@@ -1,0 +1,15 @@
+{
+  "name": "factory_analytics_backend",
+  "version": "1.0.0",
+  "description": "backend for factory_analytics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "muli",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
