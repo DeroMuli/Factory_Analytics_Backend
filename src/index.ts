@@ -12,9 +12,8 @@ const startserver = async() => {
         process.exit()
     })
     app.use("/" , (req : Request , res : Response) => {
-        res.write("Hi", (err : Error | null | undefined) => {
-            console.log(err)
-        })
+        res.setHeader('Content-Type', 'application/json');
+        res.send("Hi")
     })
 }
 
