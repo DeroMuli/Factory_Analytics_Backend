@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv'
 import express , {Request,Response} from "express"
+import router from './routes'
 
 const startserver = async() => {
     const app = express()
@@ -15,6 +16,7 @@ const startserver = async() => {
         res.setHeader('Content-Type', 'application/json');
         res.send("Hi")
     })
+    app.use("/api/v1", router)
 }
 
 startserver()

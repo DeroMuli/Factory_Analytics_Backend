@@ -1,19 +1,22 @@
-import { Router } from 'express'
+import { Router , Request , Response} from 'express'
+import { FactoryDataAttributes } from '../models/FactoryEquipmentDataModel'
 
 const FactoryEquipmentDataRouter = Router()
 
-FactoryEquipmentDataRouter.get(":/slug", () => {
-    //get factory data
+FactoryEquipmentDataRouter.get(":/id", (req : Request , res : Response) => {
+    const id = Number(req.params.id)
 })
 
-FactoryEquipmentDataRouter.put(":/id", () => {
-    //update factory data
+FactoryEquipmentDataRouter.put(":/id", (req : Request, res : Response) => {
+    const id = Number(req.params.id)
 })
 
-FactoryEquipmentDataRouter.delete(":/", () => {
-    //delete factory data
+FactoryEquipmentDataRouter.delete(":/id", (req : Request, res : Response) => {
+    const id = Number(req.params.id)
 })
 
-FactoryEquipmentDataRouter.post("/", () => {
-    //add factory data
+FactoryEquipmentDataRouter.post("/", (req : Request, res : Response) => {
+    const payload : FactoryDataAttributes = req.body
 })
+
+export default FactoryEquipmentDataRouter
