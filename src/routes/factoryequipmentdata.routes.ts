@@ -1,22 +1,38 @@
 import { Router , Request , Response} from 'express'
-import { FactoryDataAttributes } from '../models/FactoryEquipmentDataModel'
 
 const FactoryEquipmentDataRouter = Router()
 
-FactoryEquipmentDataRouter.get(":/id", (req : Request , res : Response) => {
-    const id = Number(req.params.id)
+FactoryEquipmentDataRouter.get("/",(req : Request , res : Response) => {
+    res.send("get all data")
 })
 
-FactoryEquipmentDataRouter.put(":/id", (req : Request, res : Response) => {
-    const id = Number(req.params.id)
+FactoryEquipmentDataRouter.get("/:id", (req : Request, res : Response) => {
+    const id  = req.params.id
+    res.send(`get data by id ${id}`)
 })
 
-FactoryEquipmentDataRouter.delete(":/id", (req : Request, res : Response) => {
-    const id = Number(req.params.id)
+FactoryEquipmentDataRouter.put("/update_mean_speed/:id", (req : Request , res : Response) => {
+    const id  = req.params.id
+    res.send(`update mean speed with id ${id}`)
+})
+
+FactoryEquipmentDataRouter.put("/update_mean_torque/:id", (req : Request , res : Response) => {
+    const id  = req.params.id
+    res.send(`update mean torque with id ${id}`)
+})
+
+FactoryEquipmentDataRouter.put("/update_mean_temp/:id", (req : Request , res : Response) => {
+    const id  = req.params.id
+    res.send(`update mean temp with id ${id}`)
+})
+
+FactoryEquipmentDataRouter.delete("/:id", (req : Request, res : Response) => {
+    const id  = req.params.id
+    res.send(`delete factory data with id ${id}`)
 })
 
 FactoryEquipmentDataRouter.post("/", (req : Request, res : Response) => {
-    const payload : FactoryDataAttributes = req.body
+    res.send("add factory data")
 })
 
 export default FactoryEquipmentDataRouter

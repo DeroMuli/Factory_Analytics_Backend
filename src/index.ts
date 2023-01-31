@@ -1,22 +1,20 @@
 import * as dotenv from 'dotenv'
-import express , {Request,Response} from "express"
-import router from './routes'
+import express from "express"
+import  cors from 'cors';
+import router from './routes';
 
 const startserver = async() => {
     const app = express()
     dotenv.config()
     const port = process.env.PORT;
+    app.use(cors());
     app.listen(port, () => {
         console.log(`The server is running on port ${port}`)
     }).on("error", (err : Error) => {
         console.log(err.message)
         process.exit()
     })
-    app.use("/" , (req : Request , res : Response) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.send("Hi")
-    })
-    app.use("/api/v1", router)
+    app.use("/api/v1",router)
 }
 
 startserver()

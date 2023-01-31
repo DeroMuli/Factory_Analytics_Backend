@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { Router , Request , Response } from 'express'
 import FactoryEquipmentDataRouter from './factoryequipmentdata.routes'
 
 const router = Router()
