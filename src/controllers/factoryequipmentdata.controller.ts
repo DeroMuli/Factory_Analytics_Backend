@@ -1,27 +1,48 @@
 import { FactoryDataAttributes } from "../models/FactoryEquipmentDataModel"
+import FactoryEquipmentData from "../models/FactoryEquipmentDataModel"
 
-const getfactorydatawithid =  (id : number) : FactoryDataAttributes => {
-    return {
-        id : 2,
-        name : "stuff",
-        icon_library : "lib",
-        icon_name : "name",
-        mean_speed : 23,
-        mean_temp : 23,
-        mean_torgue : 24
-    }
+
+const getallfactorydata = async () => {
+    const allfactorydata = await FactoryEquipmentData.findAll()
+    return allfactorydata
 }
 
-const updatefactorywithid = (id : number) : boolean => {
-    return true
+const getfactorydatawithid = async (id : number) => {
+    const factorydata = await FactoryEquipmentData.findOne({
+        where : {
+            id
+        }
+    })
+    return factorydata
 }
 
-const deletefactorydatawithid = (id : number) : boolean => {
-    return true
+const updatemeanspeedwithid = (id : number, mean_speed : number) => {
+    const result = FactoryEquipmentData.update({mean_speed} , {where : {id}})
+    return result
 }
 
-const addfactorydata = (data : FactoryDataAttributes) : boolean => {
-    return true
+const updatemeantorquewithid = (id : number, mean_torque : number) => {
+    const result = FactoryEquipmentData.update({mean_torque} , {where : {id}})
+    return result
 }
 
-export {getfactorydatawithid , updatefactorywithid , deletefactorydatawithid , addfactorydata}
+const updatemeantempwithid = (id : number, mean_temp : number) => {
+    const result = FactoryEquipmentData.update({mean_temp} , {where : {id}})
+    return result
+}
+
+const deletefactorydatawithid = (id : number) => {
+    const result = FactoryEquipmentData.destroy({
+        where : {
+            id
+        }
+    })
+    return result
+}
+
+const addfactorydata = async (data : any) => {
+    const result = await FactoryEquipmentData.create(data)
+    return result
+}
+
+export {getfactorydatawithid , updatemeanspeedwithid , deletefactorydatawithid , addfactorydata , getallfactorydata , updatemeantorquewithid , updatemeantempwithid }

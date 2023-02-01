@@ -10,7 +10,7 @@ export interface FactoryDataAttributes {
   icon_name : string;
 }
 
-const FactoryEquipmentData = sequelizeconnection.define('factoryequipmentdata', {
+const FactoryEquipmentData = sequelizeconnection.define('factoryequipementdata', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -40,6 +40,8 @@ const FactoryEquipmentData = sequelizeconnection.define('factoryequipmentdata', 
     type : DataTypes.STRING,
     allowNull: false
   }
+}, {
+  freezeTableName : true
 });
 
 export default FactoryEquipmentData
