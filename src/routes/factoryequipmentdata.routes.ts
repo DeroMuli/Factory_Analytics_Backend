@@ -1,5 +1,6 @@
 import { Router , Request , Response} from 'express'
 import * as FactoryDataController from "../controllers/factoryequipmentdata.controller"
+import { add_equipment_validator , update_mean_speed_validator , update_mean_temp_validator , update_mean_torque_validator} from '../middleware/factoryequipment.validator'
 
 const FactoryEquipmentDataRouter = Router()
 
@@ -14,32 +15,31 @@ FactoryEquipmentDataRouter.get("/:id",async (req : Request, res : Response) => {
     res.status(200).json(result)
 })
 
-FactoryEquipmentDataRouter.put("/update_mean_speed/",async (req : Request , res : Response) => {
-    console.log(req.body)
+FactoryEquipmentDataRouter.put("/update_mean_speed/", update_mean_speed_validator,async (req : Request , res : Response) => {
     const {id , mean_speed } = req.body
     const result = await FactoryDataController.updatemeanspeedwithid(id,mean_speed)
-    res.send(`update mean speed with id ${id}`)
+    res.status(200).json({success: true})
 })
 
-FactoryEquipmentDataRouter.put("/update_mean_torque/",async (req : Request , res : Response) => {
+FactoryEquipmentDataRouter.put("/update_mean_torque/",update_mean_torque_validator ,async (req : Request , res : Response) => {
     const {id , mean_torgue }  = req.body
     const result = await FactoryDataController.updatemeantorquewithid(id,mean_torgue)
-    res.send(`update mean torque with id ${id}`)
+    res.status(200).json({success: true})
 })
 
-FactoryEquipmentDataRouter.put("/update_mean_temp/", async (req : Request , res : Response) => {
+FactoryEquipmentDataRouter.put("/update_mean_temp/", update_mean_temp_validator,async (req : Request , res : Response) => {
     const {id , mean_temp}  = req.body
     const result = await FactoryDataController.updatemeantempwithid(id,mean_temp)
-    res.send(`update mean temp with id ${id}`)
+    res.status(200).json({success: true})
 })
 
 FactoryEquipmentDataRouter.delete("/:id",async (req : Request, res : Response) => {
     const id  = Number(req.params.id)
     const result = await FactoryDataController.deletefactorydatawithid(id)
-    res.send(`delete factory data with id ${id}`)
+    res.status(200).json({success: true})
 })
 
-FactoryEquipmentDataRouter.post("/",async (req : Request, res : Response) => {
+FactoryEquipmentDataRouter.post("/",add_equipment_validator ,async (req : Request, res : Response) => {
     const {name , mean_speed , mean_torque , mean_temp , icon_library , icon_name } = req.body
     const result = await FactoryDataController.addfactorydata({
         name,
@@ -49,7 +49,7 @@ FactoryEquipmentDataRouter.post("/",async (req : Request, res : Response) => {
         icon_library,
         icon_name
     })
-    res.send("add factory data")
+    res.status(200).json(result)
 })
 
 export default FactoryEquipmentDataRouter

@@ -1,6 +1,4 @@
-import { FactoryDataAttributes } from "../models/FactoryEquipmentDataModel"
 import FactoryEquipmentData from "../models/FactoryEquipmentDataModel"
-
 
 const getallfactorydata = async () => {
     const allfactorydata = await FactoryEquipmentData.findAll()
