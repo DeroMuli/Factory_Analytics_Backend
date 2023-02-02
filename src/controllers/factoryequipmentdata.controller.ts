@@ -1,4 +1,5 @@
 import FactoryEquipmentData from "../models/FactoryEquipmentDataModel"
+import type { FactoryEquipmentDataAttributes } from "../models/FactoryEquipmentDataModel"
 
 const getallfactorydata = async () => {
     const allfactorydata = await FactoryEquipmentData.findAll()
@@ -14,31 +15,27 @@ const getfactorydatawithid = async (id : number) => {
     return factorydata
 }
 
-const updatemeanspeedwithid = (id : number, mean_speed : number) => {
-    const result = FactoryEquipmentData.update({mean_speed} , {where : {id}})
-    return result
+const updatemeanspeedwithid = async (id : number, mean_speed : number) => {
+    await FactoryEquipmentData.update({mean_speed} , {where : {id}})
 }
 
-const updatemeantorquewithid = (id : number, mean_torque : number) => {
-    const result = FactoryEquipmentData.update({mean_torque} , {where : {id}})
-    return result
+const updatemeantorquewithid = async (id : number, mean_torque : number) => {
+    await FactoryEquipmentData.update({mean_torque} , {where : {id}})
 }
 
-const updatemeantempwithid = (id : number, mean_temp : number) => {
-    const result = FactoryEquipmentData.update({mean_temp} , {where : {id}})
-    return result
+const updatemeantempwithid = async (id : number, mean_temp : number) => {
+    await FactoryEquipmentData.update({mean_temp} , {where : {id}})
 }
 
-const deletefactorydatawithid = (id : number) => {
-    const result = FactoryEquipmentData.destroy({
+const deletefactorydatawithid =async (id : number) => {
+    await FactoryEquipmentData.destroy({
         where : {
             id
         }
     })
-    return result
 }
 
-const addfactorydata = async (data : any) => {
+const addfactorydata = async (data : FactoryEquipmentDataAttributes)=> {
     const result = await FactoryEquipmentData.create(data)
     return result
 }

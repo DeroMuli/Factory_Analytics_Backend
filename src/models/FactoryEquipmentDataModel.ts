@@ -1,5 +1,15 @@
+import { type } from 'os';
 import { DataTypes } from 'sequelize';
 import {sequelizeconnection}from '../util/sequilizeconnection';
+
+export type FactoryEquipmentDataAttributes = {
+  name : string,
+  mean_speed : number,
+  mean_temp : number,
+  mean_torque : number,
+  icon_library : string,
+  icon_name : string
+}
 
 const FactoryEquipmentData = sequelizeconnection.define('factoryequipementdata', {
   id: {
