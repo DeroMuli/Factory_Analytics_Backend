@@ -3,14 +3,17 @@ import express from "express"
 import  cors from 'cors';
 import router from './routes';
 import { testconnection } from './util/sequilizeconnection';
+import {setupmockdatasocketconnection} from "./util/websocketconnections"
 dotenv.config()
+const port = process.env.PORT;
+
 
 const startserver = async() => {
 
     const app = express()
-    const port = process.env.PORT;
 
     await testconnection()
+    setupmockdatasocketconnection()
 
     app.use(cors());
     app.use(express.json())
