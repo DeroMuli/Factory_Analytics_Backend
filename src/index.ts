@@ -4,9 +4,9 @@ import  cors from 'cors';
 import router from './routes';
 import { testconnection } from './util/sequilizeconnection';
 import {setupmockdatasocketconnection} from "./util/websocketconnections"
+import { NextFunction, Request , Response} from 'express'
 dotenv.config()
 const port = process.env.PORT;
-
 
 const startserver = async() => {
 
@@ -17,6 +17,11 @@ const startserver = async() => {
 
     app.use(cors());
     app.use(express.json())
+    //prevent caching
+    app.use((req : Request,res : Response,next : NextFunction) => {
+        res.set("Cache-Control", "no-store")
+        next()
+    })
     app.use("/api/v1",router)
 
     app.listen(port, () => {
